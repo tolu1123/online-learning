@@ -45,31 +45,31 @@ export default function Header() {
             </div>
             <span>PeerLearn</span>
           </Link>
-
-          {!isLanding && (
-            <nav className='hidden md:flex items-center gap-6'>
-              {navItems.map((item) => {
-                const isActive = location.pathname === item.href;
-                return (
-                  <Link
-                    key={item.href}
-                    to={item.href}
-                    className={cn(
-                      "flex items-center gap-2 text-sm font-medium transition-colors hover:text-gray-900",
-                      isActive ? "text-gray-900" : "text-gray-500"
-                    )}
-                  >
-                    <item.icon className='h-4 w-4' />
-                    {item.name}
-                  </Link>
-                );
-              })}
-            </nav>
-          )}
         </div>
 
+        {!isLanding && (
+          <nav className='hidden md:flex items-center gap-6'>
+            {navItems.map((item) => {
+              const isActive = location.pathname === item.href;
+              return (
+                <Link
+                  key={item.href}
+                  to={item.href}
+                  className={cn(
+                    "flex items-center gap-2 text-sm font-medium transition-colors hover:text-gray-900",
+                    isActive ? "text-gray-900" : "text-gray-500"
+                  )}
+                >
+                  <item.icon className='h-4 w-4' />
+                  {item.name}
+                </Link>
+              );
+            })}
+          </nav>
+        )}
+
         <div className='flex items-center gap-4'>
-          {isLanding && (
+          {isLanding ? (
             <>
               <Link to='/login'>
                 <Button variant='ghost'>Log in</Button>
@@ -78,13 +78,27 @@ export default function Header() {
                 <Button>Sign up</Button>
               </Link>
             </>
+          ) : (
+            <div className='hidden md:contents'>
+              <Button variant='ghost' size='icon' className='text-gray-500'>
+                <Bell className='h-5 w-5' />
+              </Button>
+              <Link to='/profile'>
+                <div className='flex items-center gap-2 pl-2'>
+                  <div className='h-8 w-8 rounded-full bg-gray-100 flex items-center justify-center border border-gray-200'>
+                    <User className='h-4 w-4 text-gray-600' />
+                  </div>
+                </div>
+              </Link>
+            </div>
           )}
         </div>
 
-
-        {!isLanding && <div className='md:hidden'>
-          <MobileMenu isLanding={isLanding} />
-        </div>}
+        {!isLanding && (
+          <div className='md:hidden'>
+            <MobileMenu isLanding={isLanding} />
+          </div>
+        )}
       </div>
     </header>
   );
