@@ -18,7 +18,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export default function MobileMenu({ isLanding }) {
+export default function MobileMenu({ isLanding, menuOpen, setMenuOpen }) {
   const location = useLocation();
   const navItems = [
     {
@@ -38,7 +38,7 @@ export default function MobileMenu({ isLanding }) {
     },
   ];
   return (
-    <Sheet>
+    <Sheet open={menuOpen} onOpenChange={setMenuOpen}>
       <SheetTrigger asChild>
         <Button
           aria-label='Button to display the Mobile Navbar'
@@ -64,6 +64,7 @@ export default function MobileMenu({ isLanding }) {
                   "flex items-center gap-2 text-sm font-medium transition-colors hover:text-gray-900",
                   isActive ? "text-gray-900" : "text-gray-500"
                 )}
+                onClick={() => setMenuOpen(false)}
               >
                 <item.icon className='h-4 w-4' />
                 {item.name}
@@ -77,10 +78,11 @@ export default function MobileMenu({ isLanding }) {
                 to='/notifications'
                 className={cn(
                   "flex items-center gap-2 text-sm font-medium transition-colors hover:text-gray-900",
-                  location.href == "/notifications"
+                  location.pathname == "/notifications"
                     ? "text-gray-900"
                     : "text-gray-500"
                 )}
+                onClick={() => setMenuOpen(false)}
               >
                 <Bell className='h-4 w-4' />
                 Notifications
@@ -89,10 +91,11 @@ export default function MobileMenu({ isLanding }) {
                 to='/profile'
                 className={cn(
                   "flex items-center gap-2 text-sm font-medium transition-colors hover:text-gray-900",
-                  location.href == "/profile"
+                  location.pathname == "/profile"
                     ? "text-gray-900"
                     : "text-gray-500"
                 )}
+                onClick={() => setMenuOpen(false)}
               >
                 <User className='h-4 w-4' />
                 Profile

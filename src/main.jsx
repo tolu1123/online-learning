@@ -13,6 +13,7 @@ import CreateRequest from "./pages/CreateRequest";
 import action from "@/actions/createRequest";
 import { ProfilePage } from './pages/profilePage'
 import { ResourcesPage } from './pages/resourcesPage'
+import { Notifications } from "./pages/Notifications";
 
 const router = createBrowserRouter([
   {
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path : "resources",
         element: <ResourcesPage />
+      },
+      {
+        path : "notifications",
+        element: <Notifications />
       },
     ],
   },

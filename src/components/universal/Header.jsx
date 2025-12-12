@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 
 import {
@@ -14,6 +15,7 @@ import MobileMenu from "@/components/universal/MobileMenu";
 
 export default function Header() {
   const location = useLocation();
+  const [menuOpen, setMenuOpen] = useState(false)
   const isLanding = location.pathname === "/";
   const navItems = [
     {
@@ -80,8 +82,10 @@ export default function Header() {
             </>
           ) : (
             <div className='hidden md:contents'>
-              <Button variant='ghost' size='icon' className='text-gray-500'>
-                <Bell className='h-5 w-5' />
+              <Button asChild variant='ghost' size='icon' className='text-gray-500'>
+                <Link to="/notifications">
+                  <Bell className='h-5 w-5' />
+                </Link>
               </Button>
               <Link to='/profile'>
                 <div className='flex items-center gap-2 pl-2'>
@@ -96,7 +100,7 @@ export default function Header() {
 
         {!isLanding && (
           <div className='md:hidden'>
-            <MobileMenu isLanding={isLanding} />
+            <MobileMenu isLanding={isLanding} menuOpen={menuOpen} setMenuOpen={setMenuOpen}/>
           </div>
         )}
       </div>
