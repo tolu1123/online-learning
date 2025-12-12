@@ -11,8 +11,9 @@ import SignUp from "./pages/SignUp";
 import Login from "./pages/Login";
 import CreateRequest from "./pages/CreateRequest";
 import action from "@/actions/createRequest";
-import { ProfilePage } from './pages/profilePage'
-import { ResourcesPage } from './pages/resourcesPage'
+import createSolution, { markSolutionCorrect } from "@/actions/createSolution";
+import { ProfilePage } from "./pages/profilePage";
+import { ResourcesPage } from "./pages/resourcesPage";
 import { Notifications } from "./pages/Notifications";
 import { RequestDetailPage } from "./pages/requestDetailPage";
 
@@ -30,6 +31,11 @@ const router = createBrowserRouter([
       {
         path: "requests/:id",
         element: <RequestDetailPage />,
+        action: createSolution,
+      },
+      {
+        path: "/requests/:id/mark-solution",
+        action: markSolutionCorrect,
       },
       {
         path: "dashboard",
@@ -41,16 +47,16 @@ const router = createBrowserRouter([
         action: action,
       },
       {
-        path : "profile",
-        element: <ProfilePage/>
+        path: "profile",
+        element: <ProfilePage />,
       },
       {
-        path : "resources",
-        element: <ResourcesPage />
+        path: "resources",
+        element: <ResourcesPage />,
       },
       {
-        path : "notifications",
-        element: <Notifications />
+        path: "notifications",
+        element: <Notifications />,
       },
     ],
   },
