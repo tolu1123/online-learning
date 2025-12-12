@@ -288,6 +288,7 @@ export function RequestDetailPage() {
         isOpen={isVideoModalOpen}
         onClose={() => setIsVideoModalOpen(false)}
         title='Join Video Session'
+        className=""
       >
         <div className='space-y-6'>
           <div className='text-center space-y-2'>

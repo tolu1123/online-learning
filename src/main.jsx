@@ -12,10 +12,12 @@ import Login from "./pages/Login";
 import CreateRequest from "./pages/CreateRequest";
 import action from "@/actions/createRequest";
 import createSolution, { markSolutionCorrect } from "@/actions/createSolution";
+import { signUp, login } from "@/actions/auth";
 import { ProfilePage } from "./pages/profilePage";
 import { ResourcesPage } from "./pages/resourcesPage";
 import { Notifications } from "./pages/Notifications";
 import { RequestDetailPage } from "./pages/requestDetailPage";
+import { Toaster } from "sonner";
 
 const router = createBrowserRouter([
   {
@@ -63,15 +65,20 @@ const router = createBrowserRouter([
   {
     path: "/sign-up",
     element: <SignUp />,
+    action: signUp,
   },
   {
     path: "/login",
     element: <Login />,
+    action: login,
   },
 ]);
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
+    <>
     <RouterProvider router={router} />
+    <Toaster />
+    </>
   </StrictMode>
 );
