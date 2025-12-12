@@ -1,15 +1,15 @@
 import React from 'react'
 import { Clock, CheckCircle2, Circle, User } from 'lucide-react'
-import { Button } from '../ui/button'
+import { Button } from '../ui/Button'
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from '../ui/card'
-import { Badge } from '../ui/badge'
-
+} from '../ui/Card'
+import { Badge } from '../ui/Badge'
+import { Link } from 'react-router-dom'
 
 export function RequestCard({
   topic,
@@ -53,17 +53,11 @@ export function RequestCard({
         </div>
       </CardContent>
       <CardFooter className="pt-3 border-t border-gray-100">
-        {status === 'Open' ? (
-          <Button onClick={onAccept} className="w-full" size="sm">
-            Accept Request
+        <Link to="/requests/:id" className="w-full">
+          <Button className="w-full" size="sm">
+            View Details
           </Button>
-        ) : (
-          <Button variant="secondary" disabled className="w-full" size="sm">
-            {status === 'Completed'
-              ? 'Session Completed'
-              : 'Session in Progress'}
-          </Button>
-        )}
+        </Link>
       </CardFooter>
     </Card>
   )

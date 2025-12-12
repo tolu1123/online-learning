@@ -14,6 +14,7 @@ import action from "@/actions/createRequest";
 import { ProfilePage } from './pages/profilePage'
 import { ResourcesPage } from './pages/resourcesPage'
 import { Notifications } from "./pages/Notifications";
+import { RequestDetailPage } from "./pages/requestDetailPage";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "requests",
         element: <Requests />,
+      },
+      {
+        path: "requests/:id",
+        element: <RequestDetailPage />,
       },
       {
         path: "dashboard",
